@@ -41,7 +41,16 @@ function formSubmission(
   copilot,
   fuelLevel,
   cargoLevel
-) {}
+) {
+    if(validateInput(pilot) === "Empty" || validateInput(copilot) === "Empty" || validateInput(fuelLevel) === "Empty" || validateInput(cargoLevel) === "Empty") {
+        alert("All fields are required.")
+    }
+
+    if(validateInput(pilot) === "Is a Number" || validateInput(copilot) === "Is a Number" || validateInput(fuelLevel) === "Not a Number" || validateInput(cargoLevel) === "Not a Number") {
+        alert("Please enter valid information.")
+    }
+}
+
 
 async function myFetch() {
   let planetsReturned;
