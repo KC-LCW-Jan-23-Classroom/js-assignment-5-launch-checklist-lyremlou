@@ -26,5 +26,7 @@ window.addEventListener("load", function() {
 
     let cargoLevelInput = document.querySelector("input[name=cargoMass");
     let cargoLevel = Number(cargoLevelInput.value); 
+
+    event.preventDefault();
    })
 });
