@@ -56,28 +56,37 @@ function formSubmission(
         alert("Please enter valid information.")
     }
 
-    if(fuelLevel < 10000) {
-        list.style.visibility = "visible"
-        fuelLevel.innerHTML = "Fuel level is too low for launch"
-        launchStatus.innerHTML = "Shuttle not ready for launch"
-        launchStatus.style.color = "red"
-    }
-
-    if(cargoLevel > 10000) {
-        list.style.visibility = "visible"
+    if(fuelLevel >= 10000 && cargoLevel > 10000) {
+        fuelLevel.innerHTML = "Fuel level high enough for launch"
         cargoLevel.innerHTML = "Cargo mass too heavy for launch"
-        launchStatus.innerHTML = "Shuttle not ready for launch"
-        launchStatus.style.color = "red"
+        launchStatus.innerHTML = "Shuttle Not Ready for Launch"
+        launchStatus.style.color = "rgb(199, 37, 78)"
+    } 
+    
+    if(fuelLevel < 10000 && cargoLevel <= 10000) {
+        fuelLevel.innerHTML = "Fuel level too low for launch"
+        cargoLevel.innerHTML = "Cargo mass low enough for launch"
+        launchStatus.innerHTML = "Shuttle Not Ready for Launch"
+        launchStatus.style.color = "rgb(199, 37, 78)"
     }
 
-    if(fuelLevel > 10000 && cargoLevel < 10000) {
-        launchStatus = launchStatus.style.color = "green"
-    }
+    if(fuelLevel < 10000 && cargoLevel > 10000) {
+        fuelLevel.innerHTML = "Fuel level too low for launch"
+        cargoLevel.innerHTML = "Cargo mass too heavy for launch"
+        launchStatus.innerHTML = "Shuttle Not Ready for Launch"
+        launchStatus.style.color = "rgb(199, 37, 78)"
+    } 
 
+    if(fuelLevel >= 10000 && cargoLevel <= 10000) {
+        fuelLevel.innerHTML = "Fuel level high enough for launch"
+        cargoLevel.innerHTML = "Cargo mass low enough for launch"
+        launchStatus.innerHTML = "Shuttle is Ready for Launch"
+        launchStatus.style.color = "rgb(0,128,0)"
+    }
+   
+    pilotStatus.innerHTML = `Pilot ${pilot} is ready for launch`
     
-    pilotStatus.innerHTML = `Pilot${pilot} is ready for launch`
-    
-    copilotStatus.innerHTML = `Co-pilot${copilot} is ready for launch`
+    copilotStatus.innerHTML = `Co-pilot ${copilot} is ready for launch`
 
 
 }
