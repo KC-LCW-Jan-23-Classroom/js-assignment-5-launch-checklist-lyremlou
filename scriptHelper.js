@@ -42,6 +42,12 @@ function formSubmission(
   fuelLevel,
   cargoLevel
 ) {
+    let pilotStatus = document.getElementById("pilotStatus");
+    let copilotStatus = document.getElementById("copilotStatus");
+    let fuelStatus = document.getElementById("fuelStatus");
+    let launchStatus = document.getElementById("launchStatus");
+    
+
     if(validateInput(pilot) === "Empty" || validateInput(copilot) === "Empty" || validateInput(fuelLevel) === "Empty" || validateInput(cargoLevel) === "Empty") {
         alert("All fields are required.")
     }
@@ -50,10 +56,30 @@ function formSubmission(
         alert("Please enter valid information.")
     }
 
-    let pilotStatus = document.getElementById("pilotStatus");
+    if(fuelLevel < 10000) {
+        list.style.visibility = "visible"
+        fuelLevel.innerHTML = "Fuel level is too low for launch"
+        launchStatus.innerHTML = "Shuttle not ready for launch"
+        launchStatus.style.color = "red"
+    }
+
+    if(cargoLevel > 10000) {
+        list.style.visibility = "visible"
+        cargoLevel.innerHTML = "Cargo mass too heavy for launch"
+        launchStatus.innerHTML = "Shuttle not ready for launch"
+        launchStatus.style.color = "red"
+    }
+
+    if(fuelLevel > 10000 && cargoLevel < 10000) {
+        launchStatus = launchStatus.style.color = "green"
+    }
+
+    
     pilotStatus.innerHTML = `Pilot${pilot} is ready for launch`
-    let copilotStatus = document.getElementById("copilotStatus");
+    
     copilotStatus.innerHTML = `Co-pilot${copilot} is ready for launch`
+
+
 }
  
 
