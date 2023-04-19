@@ -49,7 +49,13 @@ function formSubmission(
     if(validateInput(pilot) === "Is a Number" || validateInput(copilot) === "Is a Number" || validateInput(fuelLevel) === "Not a Number" || validateInput(cargoLevel) === "Not a Number") {
         alert("Please enter valid information.")
     }
+
+    let pilotStatus = document.getElementById("pilotStatus");
+    pilotStatus.innerHTML = `Pilot${pilot} is ready for launch`
+    let copilotStatus = document.getElementById("copilotStatus");
+    copilotStatus.innerHTML = `Co-pilot${copilot} is ready for launch`
 }
+ 
 
 
 async function myFetch() {
