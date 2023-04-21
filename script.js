@@ -1,11 +1,11 @@
 // Write your JavaScript code here!
 
-const { formSubmission } = require("./scriptHelper");
+const { formSubmission, pickPlanet, addDestinationInfo } = require("./scriptHelper");
 
 window.addEventListener("load", function () {
   let listedPlanets;
   // Set listedPlanetsResponse equal to the value returned by calling myFetch()
-  let listedPlanetsResponse;
+  let listedPlanetsResponse = myFetch();
   listedPlanetsResponse
     .then(function (result) {
       listedPlanets = result;
@@ -14,12 +14,14 @@ window.addEventListener("load", function () {
     .then(function () {
       console.log(listedPlanets);
       // Below this comment call the appropriate helper functions to pick a planet fom the list of planets and add that information to your destination.
+     let planet = pickPlanet(listedPlanets);
+      addDestinationInfo(document, planet.name, planet.diameter, planet.star, planet.distance, planet.moons, planet.imageURL)
     });
 
   let list = document.getElementById("faultyItems");
   list.style.visibility = "hidden";
   let form = document.querySelector("form");
-  
+
   form.addEventListener("submit", function (event) {
     let pilotInput = document.querySelector("input[name=pilotName]");
     let pilot = pilotInput.value;
@@ -33,8 +35,13 @@ window.addEventListener("load", function () {
     let cargoLevelInput = document.querySelector("input[name=cargoMass");
     let cargoLevel = Number(cargoLevelInput.value);
 
-   formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel);
-
-   event.preventDefault();
+     formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel);
+   
+     event.preventDefault();
+   
   });
 });
+
+// alerts don't work
+//functionality in browser does not work
+//passes all tests
